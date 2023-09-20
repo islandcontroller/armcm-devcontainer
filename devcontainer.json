@@ -1,0 +1,49 @@
+{
+	"name": "Arm GNU Toolchain",
+
+	// Container is built from Dockerfile
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+
+	// Privileged container in order to access /dev
+	"privileged": true,
+
+	// Mount USB devices (debug probes, UART interfaces, ...)
+	"mounts": [
+		"source=/dev/bus/usb/,target=/dev/bus/usb/,type=bind"
+	],
+
+	// Pre-configure settings and extensions
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"files.associations": {
+					"*.c": "c",
+					"*.h": "c",
+					"*.inc": "c",
+					"*.s": "arm",
+					"*.S": "arm",
+					"*.asm": "arm",
+					"*.ld": "linkerscript"
+				},
+				
+				"editor.rulers": [80],
+			
+				"cmake.configureOnOpen": true,
+				"cmake.languageSupport.dotnetPath": "/opt/dotnet/dotnet",
+				"cmake.languageSupport.enableFileAPI": true
+			},
+			"extensions": [
+				"dan-c-underwood.arm",
+				"josetr.cmake-language-support-vscode",
+				"marus25.cortex-debug",
+				"mcu-debug.peripheral-viewer",
+				"ms-vscode.cpptools-extension-pack",
+				"ms-vscode.cmake-tools",
+				"trond-snekvik.gnu-mapfiles",
+				"ZixuanWang.linkerscript"
+			]
+		}
+	}
+}
