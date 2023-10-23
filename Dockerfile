@@ -61,8 +61,8 @@ ENV PATH=$PATH:/opt/gcc-arm-none-eabi/bin
 
 #- JLink Debugger --------------------------------------------------------------
 # Package download data
-ARG JLINK_URL="https://www.segger.com/downloads/jlink/JLink_Linux_V792f_x86_64.tgz"
-ARG JLINK_MD5="e3ab50d910be526ccf58d130603ac0aa"
+ARG JLINK_URL="https://www.segger.com/downloads/jlink/JLink_Linux_V792k_x86_64.tgz"
+ARG JLINK_MD5="886404cd944df5ee7a6c0279f513906b"
 ARG JLINK_POST="accept_license_agreement=accepted&submit=Download+software"
 
 # Dependencies setup
