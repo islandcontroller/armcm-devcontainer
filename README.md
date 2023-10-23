@@ -6,7 +6,8 @@ Arm Cortex-M development and debugging environment inside a VSCode devcontainer.
 ### Packages
 * [Microsoft .NET 6.0 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) Version 6.0.22
 * [Arm GNU Toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads) Version 12.3rel1
-* [SEGGER J-Link Software](https://www.segger.com/downloads/jlink/) Version 7.92f
+* [SEGGER J-Link Software](https://www.segger.com/downloads/jlink/) Version 7.92k
+* [xPack OpenOCD](https://github.com/xpack-dev-tools/openocd-xpack) Version 0.12.0-2
 * CMake Version 3.22
 
 ## System Requirements
