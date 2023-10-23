@@ -65,7 +65,7 @@ ARG JLINK_URL="https://www.segger.com/downloads/jlink/JLink_Linux_V792f_x86_64.t
 ARG JLINK_MD5="e3ab50d910be526ccf58d130603ac0aa"
 ARG JLINK_POST="accept_license_agreement=accepted&submit=Download+software"
 
-# Dependeencies setup
+# Dependencies setup
 RUN add-apt-repository ppa:deadsnakes/ppa -y && \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -84,9 +84,17 @@ ENV PATH=$PATH:/opt/SEGGER/JLink
 RUN sudo usermod -aG dialout vscode
 
 #- OpenOCD Debugger ------------------------------------------------------------
-# Dependencies setup
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    openocd
+# Package download
+ARG OPENOCD_URL="https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.12.0-2/xpack-openocd-0.12.0-2-linux-x64.tar.gz"
+
+# Download and install package
+RUN wget -nv ${OPENOCD_URL}.sha && \
+    wget -nv ${OPENOCD_URL} && \
+    shasum -c $(basename "${OPENOCD_URL}.sha")
+RUN mkdir -p /opt/OpenOCD/ && \
+    tar -xf $(basename "${OPENOCD_URL}") -C /opt/OpenOCD --strip-components=1 && \
+    rm $(basename "${OPENOCD_URL}") $(basename "${OPENOCD_URL}.sha")
+ENV PATH=$PATH:/opt/OpenOCD/bin
 
 #- User setup ------------------------------------------------------------------
 USER vscode
