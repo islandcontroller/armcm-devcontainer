@@ -33,6 +33,9 @@ You may need to install the SEGGER-provided udev rules file in order to access t
 
 **Note:** the rules file needs to be installed on the **host**!
 
+### OpenOCD Notes
+In order to run OpenOCD without root privileges, you need to install the provided rules file in `/opt/OpenOCD/openocd/contrib/60-openocd.rules` on your host machine. See instructions inside the rules file.
+
 ## Licensing
 
 If not stated otherwise, the contents of this project are licensed under The MIT License. The full license text is provided in the [`LICENSE`](LICENSE) file.
