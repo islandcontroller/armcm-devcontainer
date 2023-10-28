@@ -12,7 +12,6 @@ USER root
 # Dependencies setup
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    cmake \
     make \
     software-properties-common \
     tar \
@@ -23,7 +22,19 @@ RUN apt-get update && \
 # Setup dir for packages installation
 WORKDIR /tmp
 
-#- CMake Configurations Storage ------------------------------------------------
+#- CMake -----------------------------------------------------------------------
+ARG CMAKE_URL="https://github.com/Kitware/CMake/releases/download/v3.27.7/cmake-3.27.7-linux-x86_64.tar.gz"
+ARG CMAKE_HASH="https://github.com/Kitware/CMake/releases/download/v3.27.7/cmake-3.27.7-SHA-256.txt"
+
+# Download and install package
+RUN wget -nv ${CMAKE_URL} && \
+    wget -nv ${CMAKE_HASH} && \
+    grep $(basename "${CMAKE_URL}") $(basename "${CMAKE_HASH}") > $(basename "${CMAKE_HASH}.sng") && \
+    sha256sum -c $(basename "${CMAKE_HASH}.sng")
+RUN tar -xf $(basename "${CMAKE_URL}") -C /usr --strip-components=1 && \
+    rm $(basename "${CMAKE_URL}") $(basename "${CMAKE_HASH}") $(basename "${CMAKE_HASH}.sng")
+
+# Prepare configuration storage
 ENV CMAKE_CONFIGS_PATH=/usr/share/cmake/configs.d
 RUN mkdir -p ${CMAKE_CONFIGS_PATH}
 
