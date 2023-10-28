@@ -1,10 +1,13 @@
 {
 	"name": "Arm GNU Toolchain",
 
-	// Container is built from Dockerfile
-	"build": {
+	// Build image locally from provided Dockerfile
+	/*"build": {
 		"dockerfile": "Dockerfile"
-	},
+	},*/
+
+	// Pull and use pre-built image from Docker Hub
+	"image": "islandc/armcm-devcontainer",
 
 	// Privileged container in order to access /dev
 	"privileged": true,
