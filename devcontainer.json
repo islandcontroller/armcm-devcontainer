@@ -21,6 +21,14 @@
 	"customizations": {
 		"vscode": {
 			"settings": {
+				"[cmake]": {
+					"editor.tabSize": 8,
+					"editor.insertSpaces": false
+				},
+				"[makefile]": {
+					"editor.tabSize": 8
+				},
+
 				"files.associations": {
 					"*.c": "c",
 					"*.h": "c",
@@ -31,7 +39,13 @@
 					"*.ld": "linkerscript"
 				},
 				
+				"editor.insertSpaces": true,
 				"editor.rulers": [80],
+				"editor.tabSize": 2,
+
+				"C_Cpp.default.compilerPath": "/opt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc",
+				"C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+				"C_Cpp.default.intelliSenseMode": "linux-gcc-arm",
 			
 				"cmake.configureOnOpen": true,
 				"cmake.languageSupport.dotnetPath": "/opt/dotnet/dotnet",
@@ -40,6 +54,7 @@
 			"extensions": [
 				"dan-c-underwood.arm",
 				"josetr.cmake-language-support-vscode",
+				"keroc.hex-fmt",
 				"marus25.cortex-debug",
 				"mcu-debug.peripheral-viewer",
 				"ms-vscode.cpptools-extension-pack",
