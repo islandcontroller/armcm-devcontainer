@@ -61,7 +61,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     libncursesw5*
 
 # Download and install package
-RUN wget -nv ${TOOLCHAIN_URL}.asc && \
+#RUN wget -nv ${TOOLCHAIN_URL}.asc && \
+RUN curl -sL ${TOOLCHAIN_URL}.asc | tr [:upper:] [:lower:] > $(basename "${TOOLCHAIN_URL}.asc") && \
     wget -nv ${TOOLCHAIN_URL} && \
     md5sum -c $(basename "${TOOLCHAIN_URL}.asc")
 RUN mkdir -p /opt/gcc-arm-none-eabi && \
