@@ -53,7 +53,7 @@ ENV PATH=$PATH:/opt/dotnet
 
 #- Arm GNU Toolchain -----------------------------------------------------------
 # Package download URL
-ARG TOOLCHAIN_URL="https://developer.arm.com/-/media/Files/downloads/gnu/12.3.rel1/binrel/arm-gnu-toolchain-12.3.rel1-x86_64-arm-none-eabi.tar.xz"
+ARG TOOLCHAIN_URL="https://developer.arm.com/-/media/Files/downloads/gnu/13.2.rel1/binrel/arm-gnu-toolchain-13.2.rel1-x86_64-arm-none-eabi.tar.xz"
 
 # Dependencies setup
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -72,8 +72,8 @@ ENV PATH=$PATH:/opt/gcc-arm-none-eabi/bin
 
 #- JLink Debugger --------------------------------------------------------------
 # Package download data
-ARG JLINK_URL="https://www.segger.com/downloads/jlink/JLink_Linux_V792m_x86_64.tgz"
-ARG JLINK_MD5="833f710a378bee4b0d117ff59cf93b25"
+ARG JLINK_URL="https://www.segger.com/downloads/jlink/JLink_Linux_V792o_x86_64.tgz"
+ARG JLINK_MD5="76548626a7358eacab3ec87234dac367"
 ARG JLINK_POST="accept_license_agreement=accepted&submit=Download+software"
 
 # Dependencies setup
