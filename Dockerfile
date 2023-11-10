@@ -17,7 +17,8 @@ RUN apt-get update && \
     software-properties-common \
     tar \
     udev \
-    usbutils
+    usbutils \
+    && rm -rf /var/lib/apt/lists/*
 
 # Setup dir for packages installation
 WORKDIR /tmp
@@ -28,8 +29,8 @@ ARG CMAKE_HASH="https://github.com/Kitware/CMake/releases/download/v3.27.7/cmake
 
 # Download and install package
 RUN curl -sLO ${CMAKE_URL} && \
-    curl -sL ${CMAKE_HASH} | grep $(basename "${CMAKE_URL}") | sha256sum -c -
-RUN tar -xf $(basename "${CMAKE_URL}") -C /usr --strip-components=1 && \
+    curl -sL ${CMAKE_HASH} | grep $(basename "${CMAKE_URL}") | sha256sum -c - && \
+    tar -xf $(basename "${CMAKE_URL}") -C /usr --strip-components=1 && \
     rm $(basename "${CMAKE_URL}")
 
 # Prepare configuration storage
@@ -43,8 +44,8 @@ ARG DOTNET_INSTALL_DIR="/opt/dotnet"
 
 # Download and install package
 RUN curl -sLO ${DOTNET_URL} && \
-    echo "${DOTNET_SHA512} $(basename ${DOTNET_URL})" | sha512sum -c -
-RUN mkdir -p ${DOTNET_INSTALL_DIR} && \
+    echo "${DOTNET_SHA512} $(basename ${DOTNET_URL})" | sha512sum -c - && \
+    mkdir -p ${DOTNET_INSTALL_DIR} && \
     tar -xf $(basename "${DOTNET_URL}") -C ${DOTNET_INSTALL_DIR} --strip-components=1 && \
     rm $(basename "${DOTNET_URL}")
 ENV PATH=$PATH:${DOTNET_INSTALL_DIR}
@@ -55,14 +56,16 @@ ARG TOOLCHAIN_URL="https://developer.arm.com/-/media/Files/downloads/gnu/13.2.re
 ARG TOOLCHAIN_INSTALL_DIR="/opt/gcc-arm-none-eabi"
 
 # Dependencies setup
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     libncurses5* \
-    libncursesw5*
+    libncursesw5* \
+    && rm -rf /var/lib/apt/lists/*
 
 # Download and install package
 RUN curl -sLO ${TOOLCHAIN_URL} && \
-    curl -sL ${TOOLCHAIN_URL}.asc | tr [:upper:] [:lower:] | md5sum -c -
-RUN mkdir -p ${TOOLCHAIN_INSTALL_DIR} && \
+    curl -sL ${TOOLCHAIN_URL}.asc | tr [:upper:] [:lower:] | md5sum -c - && \
+    mkdir -p ${TOOLCHAIN_INSTALL_DIR} && \
     tar -xf $(basename ${TOOLCHAIN_URL}) -C ${TOOLCHAIN_INSTALL_DIR} --strip-components=1 && \
     rm $(basename "${TOOLCHAIN_URL}")
 COPY gcc-arm-none-eabi.cmake ${CMAKE_CONFIGS_PATH}
@@ -79,18 +82,19 @@ ARG JLINK_INSTALL_DIR="/opt/SEGGER/JLink"
 RUN add-apt-repository ppa:deadsnakes/ppa -y && \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    python3.8
+    python3.8 \
+    && rm -rf /var/lib/apt/lists/*
 
 # Download and install package
 RUN curl -sLO -d ${JLINK_POST} -X POST ${JLINK_URL} && \
-    echo "${JLINK_MD5} $(basename ${JLINK_URL})" | md5sum -c -
-RUN mkdir -p ${JLINK_INSTALL_DIR} && \
+    echo "${JLINK_MD5} $(basename ${JLINK_URL})" | md5sum -c - && \
+    mkdir -p ${JLINK_INSTALL_DIR} && \
     tar -xf $(basename "${JLINK_URL}") -C ${JLINK_INSTALL_DIR} --strip-components=1 && \
     rm $(basename "${JLINK_URL}")
 ENV PATH=$PATH:${JLINK_INSTALL_DIR}
 
 # Add dialout group for non-root debugger access
-RUN sudo usermod -aG dialout vscode
+RUN usermod -aG dialout vscode
 
 #- OpenOCD Debugger ------------------------------------------------------------
 # Package download
@@ -99,8 +103,8 @@ ARG OPENOCD_INSTALL_DIR="/opt/OpenOCD"
 
 # Download and install package
 RUN curl -sLO ${OPENOCD_URL} && \
-    curl -sL ${OPENOCD_URL}.sha | shasum -c -
-RUN mkdir -p ${OPENOCD_INSTALL_DIR}/ && \
+    curl -sL ${OPENOCD_URL}.sha | shasum -c -&& \
+    mkdir -p ${OPENOCD_INSTALL_DIR}/ && \
     tar -xf $(basename "${OPENOCD_URL}") -C ${OPENOCD_INSTALL_DIR} --strip-components=1 && \
     rm $(basename "${OPENOCD_URL}")
 ENV PATH=$PATH:${OPENOCD_INSTALL_DIR}/bin
