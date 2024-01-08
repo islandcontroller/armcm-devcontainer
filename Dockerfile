@@ -76,7 +76,7 @@ ENV PATH=$PATH:${TOOLCHAIN_INSTALL_DIR}/bin
 #- JLink Debugger --------------------------------------------------------------
 ARG JLINK_VERSION=794c
 ARG JLINK_URL="https://www.segger.com/downloads/jlink/JLink_Linux_V${JLINK_VERSION}_x86_64.tgz"
-ARG JLINK_MD5="45d1fa6903e2229d9c02e5771cf92191"
+ARG JLINK_MD5="46f15d1509261e4b856799788853ad06"
 ARG JLINK_POST="accept_license_agreement=accepted&submit=Download+software"
 ARG JLINK_INSTALL_DIR="/opt/SEGGER/JLink"
 
