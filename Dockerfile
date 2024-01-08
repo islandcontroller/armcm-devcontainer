@@ -24,8 +24,9 @@ RUN apt-get update && \
 WORKDIR /tmp
 
 #- CMake -----------------------------------------------------------------------
-ARG CMAKE_URL="https://github.com/Kitware/CMake/releases/download/v3.27.7/cmake-3.27.7-linux-x86_64.tar.gz"
-ARG CMAKE_HASH="https://github.com/Kitware/CMake/releases/download/v3.27.7/cmake-3.27.7-SHA-256.txt"
+ARG CMAKE_VERSION=3.27.7
+ARG CMAKE_URL="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-linux-x86_64.tar.gz"
+ARG CMAKE_HASH="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-SHA-256.txt"
 
 # Download and install package
 RUN curl -sLO ${CMAKE_URL} && \
@@ -38,7 +39,8 @@ ENV CMAKE_CONFIGS_PATH=/usr/share/cmake/configs.d
 RUN mkdir -p ${CMAKE_CONFIGS_PATH}
 
 #- .NET 6 Runtime --------------------------------------------------------------
-ARG DOTNET_URL="https://download.visualstudio.microsoft.com/download/pr/0e8de3f9-7fda-46b7-9337-a3709c8e385d/bc29c53eb79fda25abb0fb9be60c6a22/dotnet-runtime-6.0.25-linux-x64.tar.gz"
+ARG DOTNET_VERSION=6.0.25
+ARG DOTNET_URL="https://dotnetcli.azureedge.net/dotnet/Runtime/$DOTNET_VERSION/dotnet-runtime-$DOTNET_VERSION-linux-x64.tar.gz"
 ARG DOTNET_SHA512="9d4cd137353b6340162ca2c381342957e22d6cb419af9198a09f2354ba647ce0ddd007c58e464a47b48ac778ffc2b77569d8ca7921d0819aa92a5ac69d99de27"
 ARG DOTNET_INSTALL_DIR="/opt/dotnet"
 
@@ -51,8 +53,8 @@ RUN curl -sLO ${DOTNET_URL} && \
 ENV PATH=$PATH:${DOTNET_INSTALL_DIR}
 
 #- Arm GNU Toolchain -----------------------------------------------------------
-# Package download URL
-ARG TOOLCHAIN_URL="https://developer.arm.com/-/media/Files/downloads/gnu/13.2.rel1/binrel/arm-gnu-toolchain-13.2.rel1-x86_64-arm-none-eabi.tar.xz"
+ARG TOOLCHAIN_VERSION=13.2.rel1
+ARG TOOLCHAIN_URL="https://developer.arm.com/-/media/Files/downloads/gnu/$TOOLCHAIN_VERSION/binrel/arm-gnu-toolchain-$TOOLCHAIN_VERSION-x86_64-arm-none-eabi.tar.xz"
 ARG TOOLCHAIN_INSTALL_DIR="/opt/gcc-arm-none-eabi"
 
 # Dependencies setup
@@ -72,8 +74,8 @@ COPY gcc-arm-none-eabi.cmake ${CMAKE_CONFIGS_PATH}
 ENV PATH=$PATH:${TOOLCHAIN_INSTALL_DIR}/bin
 
 #- JLink Debugger --------------------------------------------------------------
-# Package download data
-ARG JLINK_URL="https://www.segger.com/downloads/jlink/JLink_Linux_V792o_x86_64.tgz"
+ARG JLINK_VERSION=792o
+ARG JLINK_URL="https://www.segger.com/downloads/jlink/JLink_Linux_V${JLINK_VERSION}_x86_64.tgz"
 ARG JLINK_MD5="76548626a7358eacab3ec87234dac367"
 ARG JLINK_POST="accept_license_agreement=accepted&submit=Download+software"
 ARG JLINK_INSTALL_DIR="/opt/SEGGER/JLink"
@@ -97,8 +99,8 @@ ENV PATH=$PATH:${JLINK_INSTALL_DIR}
 RUN usermod -aG dialout vscode
 
 #- OpenOCD Debugger ------------------------------------------------------------
-# Package download
-ARG OPENOCD_URL="https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.12.0-2/xpack-openocd-0.12.0-2-linux-x64.tar.gz"
+ARG OPENOCD_VERSION=0.12.0-2
+ARG OPENOCD_URL="https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v$OPENOCD_VERSION/xpack-openocd-$OPENOCD_VERSION-linux-x64.tar.gz"
 ARG OPENOCD_INSTALL_DIR="/opt/OpenOCD"
 
 # Download and install package
