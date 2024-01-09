@@ -12,6 +12,7 @@ USER root
 # Dependencies setup
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    cu \
     curl \
     make \
     software-properties-common \

@@ -39,6 +39,15 @@ In order to use SEGGER and OpenOCD debug probes within the container, some udev 
       cd .vscode/setup
       sudo ./install-rules
 
+### Serial Monitor
+To access a serial port inside the devcontainer, use the `cu` command as shown below:
+
+    cu -l <serial port device> -s <baudrate>
+
+e.g. "`cu -l /dev/ttyACM0 -s 115200`".
+
+To close the connection, press RETURN/ESC/Ctrl-C, type "`~.`" (tilde, dot) and wait for 3 seconds.
+
 ## Licensing
 
 If not stated otherwise, the contents of this project are licensed under The MIT License. The full license text is provided in the [`LICENSE`](LICENSE) file.
