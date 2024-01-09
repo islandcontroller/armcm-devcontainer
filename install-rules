@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cp $(pwd)/*.rules /etc/udev/rules.d/
+udevadm control -R
+udevadm trigger

@@ -28,15 +28,16 @@ For CMake projects:
 * Build using `CMake: Build [F7]`
 
 ### CMake+IntelliSense Notes
-Upon first run, an error message may appear in Line 1, Column 1. Try re-running CMake configuration, or run a build.
+Upon first run, an error message may appear in Line 1, Column 1. Try re-running CMake configuration, or run a build. If the file is a `.h` header file, it needs to be `#include`'d into a C module.
 
-### SEGGER J-Link Notes
-You may need to install the SEGGER-provided udev rules file in order to access the debug probe without root privileges. See `/opt/SEGGER/JLink/README.txt` inside the devcontainer.
+### UDEV Rules installation
+In order to use SEGGER and OpenOCD debug probes within the container, some udev rules need to be installed on the **host** machine. A setup script has been provided to aid with installation.
+* Run `setup-devcontainer` inside the **container**
+* Close the container, and re-open the work directory on your **host**
+* Run the `install-rules` script inside `.vscode/setup/` on your host machine
 
-**Note:** the rules file needs to be installed on the **host**!
-
-### OpenOCD Notes
-In order to run OpenOCD without root privileges, you need to install the provided rules file in `/opt/OpenOCD/openocd/contrib/60-openocd.rules` on your host machine. See instructions inside the rules file.
+      cd .vscode/setup
+      sudo ./install-rules
 
 ## Licensing
 

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+setup_dir=/workspaces/.vscode/setup
+
+mkdir -p $setup_dir
+cp /opt/SEGGER/JLink/99-jlink.rules $setup_dir/
+cp /opt/OpenOCD/openocd/contrib/60-openocd.rules $setup_dir/
+cp /opt/devcontainer/install-rules $setup_dir/
