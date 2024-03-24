@@ -25,7 +25,7 @@ RUN apt-get update && \
 WORKDIR /tmp
 
 #- CMake -----------------------------------------------------------------------
-ARG CMAKE_VERSION=3.28.3
+ARG CMAKE_VERSION=3.29.0
 ARG CMAKE_URL="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-linux-x86_64.tar.gz"
 ARG CMAKE_HASH="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-SHA-256.txt"
 
@@ -40,9 +40,9 @@ ENV CMAKE_CONFIGS_PATH=/usr/share/cmake/configs.d
 RUN mkdir -p ${CMAKE_CONFIGS_PATH}
 
 #- .NET 6 Runtime --------------------------------------------------------------
-ARG DOTNET_VERSION=6.0.27
+ARG DOTNET_VERSION=6.0.28
 ARG DOTNET_URL="https://dotnetcli.azureedge.net/dotnet/Runtime/$DOTNET_VERSION/dotnet-runtime-$DOTNET_VERSION-linux-x64.tar.gz"
-ARG DOTNET_SHA512="448c4419e6c5b52e82eebaaf8601bbe668a0c8bb3293a6004125c7305b38072f7d2236ebffcaf4a71901b61b22ce66ae8b077af6321ba14729be385f228be04c"
+ARG DOTNET_SHA512="5e9039c6c83bed02280e6455ee9ec59c9509055ed15d20fb628eca1147c6c3b227579fbffe5d890879b8e62312facf25089b81f4c461797a1a701a220b51d698"
 ARG DOTNET_INSTALL_DIR="/opt/dotnet"
 
 # Download and install package
@@ -75,9 +75,9 @@ COPY gcc-arm-none-eabi.cmake ${CMAKE_CONFIGS_PATH}
 ENV PATH=$PATH:${TOOLCHAIN_INSTALL_DIR}/bin
 
 #- JLink Debugger --------------------------------------------------------------
-ARG JLINK_VERSION=794k
+ARG JLINK_VERSION=796b
 ARG JLINK_URL="https://www.segger.com/downloads/jlink/JLink_Linux_V${JLINK_VERSION}_x86_64.tgz"
-ARG JLINK_MD5="d0bef55e96b1314e012eec1201d944c3"
+ARG JLINK_MD5="2bc36e9db363df8938515ada48d46869"
 ARG JLINK_POST="accept_license_agreement=accepted&submit=Download+software"
 ARG JLINK_INSTALL_DIR="/opt/SEGGER/JLink"
 
