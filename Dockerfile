@@ -25,7 +25,7 @@ RUN apt-get update && \
 WORKDIR /tmp
 
 #- CMake -----------------------------------------------------------------------
-ARG CMAKE_VERSION=3.29.0
+ARG CMAKE_VERSION=3.29.2
 ARG CMAKE_URL="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-linux-x86_64.tar.gz"
 ARG CMAKE_HASH="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-SHA-256.txt"
 
@@ -40,9 +40,9 @@ ENV CMAKE_CONFIGS_PATH=/usr/share/cmake/configs.d
 RUN mkdir -p ${CMAKE_CONFIGS_PATH}
 
 #- .NET 6 Runtime --------------------------------------------------------------
-ARG DOTNET_VERSION=6.0.28
+ARG DOTNET_VERSION=6.0.29
 ARG DOTNET_URL="https://dotnetcli.azureedge.net/dotnet/Runtime/$DOTNET_VERSION/dotnet-runtime-$DOTNET_VERSION-linux-x64.tar.gz"
-ARG DOTNET_SHA512="5e9039c6c83bed02280e6455ee9ec59c9509055ed15d20fb628eca1147c6c3b227579fbffe5d890879b8e62312facf25089b81f4c461797a1a701a220b51d698"
+ARG DOTNET_SHA512="c9fc66d47e7c5ed77f13d03bd3a6d09f99560bd432aa308392e0604bdf2a378f66f836184dca4a678052989e6e51a5535225de337c32a4a4e17a67abdc554ffa"
 ARG DOTNET_INSTALL_DIR="/opt/dotnet"
 
 # Download and install package
@@ -75,9 +75,9 @@ COPY gcc-arm-none-eabi.cmake ${CMAKE_CONFIGS_PATH}
 ENV PATH=$PATH:${TOOLCHAIN_INSTALL_DIR}/bin
 
 #- JLink Debugger --------------------------------------------------------------
-ARG JLINK_VERSION=796b
+ARG JLINK_VERSION=796f
 ARG JLINK_URL="https://www.segger.com/downloads/jlink/JLink_Linux_V${JLINK_VERSION}_x86_64.tgz"
-ARG JLINK_MD5="2bc36e9db363df8938515ada48d46869"
+ARG JLINK_MD5="2c64a78ed475acc690c5b4d426216d5c"
 ARG JLINK_POST="accept_license_agreement=accepted&submit=Download+software"
 ARG JLINK_INSTALL_DIR="/opt/SEGGER/JLink"
 
@@ -100,7 +100,7 @@ ENV PATH=$PATH:${JLINK_INSTALL_DIR}
 RUN usermod -aG dialout vscode
 
 #- OpenOCD Debugger ------------------------------------------------------------
-ARG OPENOCD_VERSION=0.12.0-2
+ARG OPENOCD_VERSION=0.12.0-3
 ARG OPENOCD_URL="https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v$OPENOCD_VERSION/xpack-openocd-$OPENOCD_VERSION-linux-x64.tar.gz"
 ARG OPENOCD_INSTALL_DIR="/opt/OpenOCD"
 

@@ -6,11 +6,11 @@
 ![Screenshot](scr.PNG)
 
 ### Packages
-* [Microsoft .NET 6.0 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) Version 6.0.28
+* [Microsoft .NET 6.0 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) Version 6.0.29
 * [Arm GNU Toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads) Version 13.2rel1
-* [SEGGER J-Link Software](https://www.segger.com/downloads/jlink/) Version 7.96b
-* [xPack OpenOCD](https://github.com/xpack-dev-tools/openocd-xpack) Version 0.12.0-2
-* [CMake](https://cmake.org/download) Version 3.29.0
+* [SEGGER J-Link Software](https://www.segger.com/downloads/jlink/) Version 7.96f
+* [xPack OpenOCD](https://github.com/xpack-dev-tools/openocd-xpack) Version 0.12.0-3
+* [CMake](https://cmake.org/download) Version 3.29.2
 
 ## System Requirements
 * VSCode [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension
