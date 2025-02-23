@@ -21,8 +21,9 @@
 * Select `Dev Containers: Reopen in Container`
 
 For CMake projects:
-* Upon prompt, select the `GCC x.x arm-none-eabi` CMake Kit. 
-  * Alternatively, a toolchain definition file is provided in: `$CMAKE_CONFIGS_PATH/gcc-arm-none-eabi.cmake`.
+* Upon prompt, select the `Arm GNU Toolchain x.x` CMake Kit. 
+  * The toolchain file is located at [`/opt/gcc-arm-none-eabi/gcc-arm-none-eabi.cmake`](gcc-arm-none-eabi.cmake).
+  * The CMake kit definition for VS Code is located at [`/opt/devcontainer/cmake-tools-kits.json`](cmake-tools-kits.json).
 * Run `CMake: Configure`
 * Build using `CMake: Build [F7]`
 

@@ -1,0 +1,6 @@
+[
+	{
+		"name": "Arm GNU Toolchain 14.2rel1",
+		"toolchainFile": "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi.cmake"
+	}
+]

@@ -35,10 +35,6 @@ RUN curl -sLO ${CMAKE_URL} && \
     tar -xf $(basename "${CMAKE_URL}") -C /usr --strip-components=1 && \
     rm $(basename "${CMAKE_URL}")
 
-# Prepare configuration storage
-ENV CMAKE_CONFIGS_PATH=/usr/share/cmake/configs.d
-RUN mkdir -p ${CMAKE_CONFIGS_PATH}
-
 #- .NET 6 Runtime --------------------------------------------------------------
 ARG DOTNET_VERSION=6.0.36
 ARG DOTNET_URL="https://dotnetcli.azureedge.net/dotnet/Runtime/$DOTNET_VERSION/dotnet-runtime-$DOTNET_VERSION-linux-x64.tar.gz"
@@ -72,7 +68,7 @@ RUN curl -sLO ${TOOLCHAIN_URL} && \
     mkdir -p ${TOOLCHAIN_INSTALL_DIR} && \
     tar -xf $(basename ${TOOLCHAIN_URL}) -C ${TOOLCHAIN_INSTALL_DIR} --strip-components=1 && \
     rm $(basename "${TOOLCHAIN_URL}")
-COPY gcc-arm-none-eabi.cmake ${CMAKE_CONFIGS_PATH}
+COPY gcc-arm-none-eabi.cmake ${TOOLCHAIN_INSTALL_DIR}
 ENV PATH=$PATH:${TOOLCHAIN_INSTALL_DIR}/bin
 
 #- JLink Debugger --------------------------------------------------------------
@@ -119,6 +115,7 @@ ARG UTILS_INSTALL_DIR="/opt/devcontainer/"
 # Add setup files and register in path
 COPY setup-devcontainer ${UTILS_INSTALL_DIR}/bin/
 COPY install-rules ${UTILS_INSTALL_DIR}
+COPY cmake-tools-kits.json ${UTILS_INSTALL_DIR}
 ENV PATH=$PATH:${UTILS_INSTALL_DIR}/bin
 
 #- User setup ------------------------------------------------------------------
