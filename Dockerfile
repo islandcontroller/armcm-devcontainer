@@ -25,7 +25,7 @@ RUN apt-get update && \
 WORKDIR /tmp
 
 #- CMake -----------------------------------------------------------------------
-ARG CMAKE_VERSION=3.31.2
+ARG CMAKE_VERSION=3.31.5
 ARG CMAKE_URL="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-linux-x86_64.tar.gz"
 ARG CMAKE_HASH="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-SHA-256.txt"
 
@@ -54,7 +54,7 @@ RUN curl -sLO ${DOTNET_URL} && \
 ENV PATH=$PATH:${DOTNET_INSTALL_DIR}
 
 #- Arm GNU Toolchain -----------------------------------------------------------
-ARG TOOLCHAIN_VERSION=13.3.rel1
+ARG TOOLCHAIN_VERSION=14.2.rel1
 ARG TOOLCHAIN_URL="https://developer.arm.com/-/media/Files/downloads/gnu/$TOOLCHAIN_VERSION/binrel/arm-gnu-toolchain-$TOOLCHAIN_VERSION-x86_64-arm-none-eabi.tar.xz"
 ARG TOOLCHAIN_INSTALL_DIR="/opt/gcc-arm-none-eabi"
 
@@ -63,6 +63,7 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     libncurses5* \
     libncursesw5* \
+    libpython3.8 \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and install package
@@ -75,9 +76,9 @@ COPY gcc-arm-none-eabi.cmake ${CMAKE_CONFIGS_PATH}
 ENV PATH=$PATH:${TOOLCHAIN_INSTALL_DIR}/bin
 
 #- JLink Debugger --------------------------------------------------------------
-ARG JLINK_VERSION=810k
+ARG JLINK_VERSION=814
 ARG JLINK_URL="https://www.segger.com/downloads/jlink/JLink_Linux_V${JLINK_VERSION}_x86_64.tgz"
-ARG JLINK_MD5="6ac06672cb173ab6dbe90ab46c735bbe"
+ARG JLINK_MD5="b0ac8352cde36df16beab304090615e7"
 ARG JLINK_POST="accept_license_agreement=accepted&submit=Download+software"
 ARG JLINK_INSTALL_DIR="/opt/SEGGER/JLink"
 
@@ -100,7 +101,7 @@ ENV PATH=$PATH:${JLINK_INSTALL_DIR}
 RUN usermod -aG dialout vscode
 
 #- OpenOCD Debugger ------------------------------------------------------------
-ARG OPENOCD_VERSION=0.12.0-4
+ARG OPENOCD_VERSION=0.12.0-6
 ARG OPENOCD_URL="https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v$OPENOCD_VERSION/xpack-openocd-$OPENOCD_VERSION-linux-x64.tar.gz"
 ARG OPENOCD_INSTALL_DIR="/opt/OpenOCD"
 

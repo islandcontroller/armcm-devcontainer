@@ -7,10 +7,10 @@
 
 ### Packages
 * [Microsoft .NET 6.0 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) Version 6.0.36
-* [Arm GNU Toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads) Version 13.3rel1
-* [SEGGER J-Link Software](https://www.segger.com/downloads/jlink/) Version 8.10k
-* [xPack OpenOCD](https://github.com/xpack-dev-tools/openocd-xpack) Version 0.12.0-4
-* [CMake](https://cmake.org/download) Version 3.31.2
+* [Arm GNU Toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads) Version 14.2rel1
+* [SEGGER J-Link Software](https://www.segger.com/downloads/jlink/) Version 8.14
+* [xPack OpenOCD](https://github.com/xpack-dev-tools/openocd-xpack) Version 0.12.0-6
+* [CMake](https://cmake.org/download) Version 3.31.5
 ## System Requirements
 * VSCode [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension
 * [usbipd-win](https://learn.microsoft.com/en-us/windows/wsl/connect-usb) (Windows *and* WSL parts installed!)
