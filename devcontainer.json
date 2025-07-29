@@ -48,13 +48,10 @@
 				"C_Cpp.default.intelliSenseMode": "linux-gcc-arm",
 			
 				"cmake.configureOnOpen": true,
-				"cmake.languageSupport.dotnetPath": "/opt/dotnet/dotnet",
-				"cmake.languageSupport.enableFileAPI": true,
 				"cmake.additionalKits": [ "/opt/devcontainer/cmake-tools-kits.json" ]
 			},
 			"extensions": [
 				"dan-c-underwood.arm",
-				"josetr.cmake-language-support-vscode",
 				"keroc.hex-fmt",
 				"marus25.cortex-debug",
 				"mcu-debug.peripheral-viewer",
