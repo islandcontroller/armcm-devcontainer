@@ -48,6 +48,13 @@ e.g. "`cu -l /dev/ttyACM0 -s 115200`".
 
 To close the connection, press RETURN/ESC/Ctrl-C, type "`~.`" (tilde, dot) and wait for 3 seconds.
 
+### SEGGER Ozone
+Use the `setup-devcontainer` script to download and install [SEGGER Ozone](https://www.segger.com/products/development-tools/ozone-j-link-debugger/) and its dependencies:
+
+    setup-devcontainer --install-ozone
+
+Launch it from a terminal tab using the `ozone` command.
+
 ## Licensing
 
 If not stated otherwise, the contents of this project are licensed under The MIT License. The full license text is provided in the [`LICENSE`](LICENSE) file.

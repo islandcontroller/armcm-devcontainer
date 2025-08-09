@@ -1,7 +1,18 @@
 #!/bin/bash
 
-setup_dir=$(pwd)/.vscode/setup
-mkdir -p $setup_dir
-cp /opt/SEGGER/JLink/99-jlink.rules $setup_dir/
-cp /opt/OpenOCD/openocd/contrib/60-openocd.rules $setup_dir/
-cp /opt/devcontainer/install-rules $setup_dir/
+case $1 in
+    --install-ozone)
+        curl -LO https://www.segger.com/downloads/jlink/Ozone_Linux_x86_64.deb
+        sudo bash -c 'add-apt-repository -y ppa:rock-core/qt4 && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y libfreetype-dev libsm-dev libxrender-dev libxrandr-dev libxfixes-dev libxcursor-dev libfontconfig-dev libqtcore4'
+        sudo bash -c 'DEBIAN_FRONTEND=noninteractive apt-get install -y ./Ozone_Linux_x86_64.deb'
+        rm Ozone_Linux_x86_64.deb
+        ;;
+
+    *)
+        setup_dir=$(pwd)/.vscode/setup
+        mkdir -p $setup_dir
+        cp /opt/SEGGER/JLink/99-jlink.rules $setup_dir/
+        cp /opt/OpenOCD/openocd/contrib/60-openocd.rules $setup_dir/
+        cp /opt/devcontainer/install-rules $setup_dir/
+        ;;
+esac
