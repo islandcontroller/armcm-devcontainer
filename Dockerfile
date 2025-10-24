@@ -25,7 +25,7 @@ RUN apt-get update && \
 WORKDIR /tmp
 
 #- CMake -----------------------------------------------------------------------
-ARG CMAKE_VERSION=4.0.3
+ARG CMAKE_VERSION=4.1.2
 ARG CMAKE_URL="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-linux-x86_64.tar.gz"
 ARG CMAKE_HASH="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-SHA-256.txt"
 
@@ -66,9 +66,9 @@ COPY gcc-arm-none-eabi.cmake ${TOOLCHAIN_INSTALL_DIR}
 ENV PATH=$PATH:${TOOLCHAIN_INSTALL_DIR}/bin
 
 #- JLink Debugger --------------------------------------------------------------
-ARG JLINK_VERSION=854
+ARG JLINK_VERSION=880
 ARG JLINK_URL="https://www.segger.com/downloads/jlink/JLink_Linux_V${JLINK_VERSION}_x86_64.tgz"
-ARG JLINK_MD5="0a252f2df1aef57af4128ece7b4baa9d"
+ARG JLINK_MD5="81a458c583a26bde8b042fcee3c4b0dd"
 ARG JLINK_POST="accept_license_agreement=accepted&submit=Download+software"
 ARG JLINK_INSTALL_DIR="/opt/SEGGER/JLink"
 
@@ -91,7 +91,7 @@ ENV PATH=$PATH:${JLINK_INSTALL_DIR}
 RUN usermod -aG dialout vscode
 
 #- OpenOCD Debugger ------------------------------------------------------------
-ARG OPENOCD_VERSION=0.12.0-6
+ARG OPENOCD_VERSION=0.12.0-7
 ARG OPENOCD_URL="https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v$OPENOCD_VERSION/xpack-openocd-$OPENOCD_VERSION-linux-x64.tar.gz"
 ARG OPENOCD_INSTALL_DIR="/opt/OpenOCD"
 
