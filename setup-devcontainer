@@ -1,18 +1,35 @@
 #!/bin/bash
 
+setup_dir=$(pwd)/.vscode/setup
+
 case $1 in
-    --install-ozone)
+    -Z|--install-ozone)
         curl -LO https://www.segger.com/downloads/jlink/Ozone_Linux_x86_64.deb
         sudo bash -c 'add-apt-repository -y ppa:rock-core/qt4 && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y libfreetype-dev libsm-dev libxrender-dev libxrandr-dev libxfixes-dev libxcursor-dev libfontconfig-dev libqtcore4'
         sudo bash -c 'DEBIAN_FRONTEND=noninteractive apt-get install -y ./Ozone_Linux_x86_64.deb'
         rm Ozone_Linux_x86_64.deb
         ;;
 
-    *)
-        setup_dir=$(pwd)/.vscode/setup
+    -h|--help)
+        echo "Usage: setup-devcontainer [OPTION]"
+        echo "Copy UDev rules or install additional features"
+        echo ""
+        echo "With no OPTION specified, the script will copy the UDev .rules files to $setup_dir."
+        echo ""
+        echo "  -U, --install-udev    Copies UDev rule files (default action)"
+        echo "  -Z, --install-ozone   Downloads and installs SEGGER Ozone"
+        echo "  -h, --help            Displays this help"
+        ;;
+
+    -U|--install-udev|"")
         mkdir -p $setup_dir
         cp /opt/SEGGER/JLink/99-jlink.rules $setup_dir/
         cp /opt/OpenOCD/openocd/contrib/60-openocd.rules $setup_dir/
         cp /opt/devcontainer/install-rules $setup_dir/
+        ;;
+
+    *)
+        echo "setup-devcontainer: invalid option -- '$1'"
+        echo "Try 'setup-devcontainer --help' for more information"
         ;;
 esac
