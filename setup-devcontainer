@@ -3,6 +3,10 @@
 setup_dir=$(pwd)/.vscode/setup
 
 case $1 in
+    -G|--install-gui)
+        sudo bash -c 'add-apt-repository -y ppa:rock-core/qt4 && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y libfreetype-dev libsm-dev libxrender-dev libxrandr-dev libxfixes-dev libxcursor-dev libfontconfig-dev libqtcore4'
+        ;;
+
     -Z|--install-ozone)
         curl -LO https://www.segger.com/downloads/jlink/Ozone_Linux_x86_64.deb
         sudo bash -c 'add-apt-repository -y ppa:rock-core/qt4 && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y libfreetype-dev libsm-dev libxrender-dev libxrandr-dev libxfixes-dev libxcursor-dev libfontconfig-dev libqtcore4'
@@ -16,6 +20,7 @@ case $1 in
         echo ""
         echo "With no OPTION specified, the script will copy the UDev .rules files to $setup_dir."
         echo ""
+        echo "  -G, --install-gui     Installs the GUI dependencies for JFlash/JLink"
         echo "  -U, --install-udev    Copies UDev rule files (default action)"
         echo "  -Z, --install-ozone   Downloads and installs SEGGER Ozone"
         echo "  -h, --help            Displays this help"
