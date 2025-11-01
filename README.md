@@ -55,6 +55,13 @@ Use the `setup-devcontainer` script to download and install [SEGGER Ozone](https
 
 Launch it from a terminal tab using the `ozone` command.
 
+### SEGGER J-Flash other GUI tools
+Use the following command to install the GUI dependencies:
+
+    setup-devcontainer --install-gui
+
+Then, you can launch J-Flash using the `JFlashExe` command.
+
 ## Licensing
 
 If not stated otherwise, the contents of this project are licensed under The MIT License. The full license text is provided in the [`LICENSE`](LICENSE) file.
