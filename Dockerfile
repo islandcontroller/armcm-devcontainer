@@ -87,7 +87,7 @@ RUN curl -sLO -d ${JLINK_POST} -X POST ${JLINK_URL} && \
     rm $(basename "${JLINK_URL}")
 # Workaround for JFlash not starting correctly, see:
 # https://forum.segger.com/thread/8238-solved-j-flash-v7-54d-error-could-not-open-flash-device-list-file/?postID=30359#post30359
-RUN find ${JLINK_INSTALL_DIR} -name "J*Exe" -exec sh -c 'for f in $@; do ln -Tsf $f /usr/bin/$(basename "$f"); done' {} +
+RUN find ${JLINK_INSTALL_DIR} -name "J*" -exec sh -c 'for f in $@; do ln -Tsf $f /usr/bin/$(basename "$f"); done' {} +
 
 # Add dialout group for non-root debugger access
 RUN usermod -aG dialout vscode
