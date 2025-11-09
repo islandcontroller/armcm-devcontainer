@@ -7,7 +7,7 @@
 
 ### Packages
 * [Arm GNU Toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads) Version 14.3rel1
-* [SEGGER J-Link Software](https://www.segger.com/downloads/jlink/) Version 8.82
+* [SEGGER J-Link Software](https://www.segger.com/downloads/jlink/) Version 8.84
 * [xPack OpenOCD](https://github.com/xpack-dev-tools/openocd-xpack) Version 0.12.0-7
 * [CMake](https://cmake.org/download) Version 4.1.2
 
