@@ -115,6 +115,9 @@ COPY cmake-tools-kits.json ${UTILS_INSTALL_DIR}
 ENV PATH=$PATH:${UTILS_INSTALL_DIR}/bin
 
 #- User setup ------------------------------------------------------------------
+# Add plugdev group for non-root ttyUSB access
+RUN usermod -aG plugdev vscode
+
 USER vscode
 
 VOLUME [ "/workspaces" ]
