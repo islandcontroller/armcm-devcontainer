@@ -27,11 +27,11 @@ WORKDIR /tmp
 #- CMake -----------------------------------------------------------------------
 ARG CMAKE_VERSION=4.4.2
 ARG CMAKE_URL="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-linux-x86_64.tar.gz"
-ARG CMAKE_HASH="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-SHA-256.txt"
+ARG CMAKE_HASH="3ada9a3f5d8a85413579bdd0ea6aa8e8da86efdd6d15c91a1afa517f2021956c"
 
 # Download and install package
 RUN curl -sLO ${CMAKE_URL} && \
-    curl -sL ${CMAKE_HASH} | grep $(basename "${CMAKE_URL}") | sha256sum -c - && \
+    echo "${CMAKE_HASH} $(basename ${CMAKE_URL})" | sha256sum -c - && \
     tar -xf $(basename "${CMAKE_URL}") -C /usr --strip-components=1 && \
     rm $(basename "${CMAKE_URL}")
 
@@ -46,6 +46,7 @@ ENV PATH=$PATH:${DOTNET_INSTALL_DIR}
 #- Arm GNU Toolchain -----------------------------------------------------------
 ARG TOOLCHAIN_VERSION=15.3.rel1
 ARG TOOLCHAIN_URL="https://gitlab.arm.com/api/v4/projects/tooling%2Fgnu-toolchains-for-arm/packages/generic/gnu-toolchain/$TOOLCHAIN_VERSION/arm-gnu-toolchain-$TOOLCHAIN_VERSION-x86_64-arm-none-eabi.tar.xz"
+ARG TOOLCHAIN_MD5="bbe1e4bf65591692ed93cd19706c93af"
 ARG TOOLCHAIN_INSTALL_DIR="/opt/gcc-arm-none-eabi"
 
 # Dependencies setup
@@ -58,7 +59,7 @@ RUN apt-get update && \
 
 # Download and install package
 RUN curl -sLO ${TOOLCHAIN_URL} && \
-    curl -sL ${TOOLCHAIN_URL}.asc | tr [:upper:] [:lower:] | md5sum -c - && \
+    echo "$TOOLCHAIN_MD5 $(basename ${TOOLCHAIN_URL})" | md5sum -c - && \
     mkdir -p ${TOOLCHAIN_INSTALL_DIR} && \
     tar -xf $(basename ${TOOLCHAIN_URL}) -C ${TOOLCHAIN_INSTALL_DIR} --strip-components=1 && \
     rm $(basename "${TOOLCHAIN_URL}")
@@ -95,11 +96,12 @@ RUN usermod -aG dialout vscode
 #- OpenOCD Debugger ------------------------------------------------------------
 ARG OPENOCD_VERSION=0.12.0-7
 ARG OPENOCD_URL="https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v$OPENOCD_VERSION/xpack-openocd-$OPENOCD_VERSION-linux-x64.tar.gz"
+ARG OPENOCD_HASH="94b3790983beaf8ed57e646c0620dd66d705fddae03d290823a6ed3b439468d6"
 ARG OPENOCD_INSTALL_DIR="/opt/OpenOCD"
 
 # Download and install package
 RUN curl -sLO ${OPENOCD_URL} && \
-    curl -sL ${OPENOCD_URL}.sha | shasum -c -&& \
+    echo "${OPENOCD_HASH} $(basename ${OPENOCD_URL})" | sha256sum -c -&& \
     mkdir -p ${OPENOCD_INSTALL_DIR}/ && \
     tar -xf $(basename "${OPENOCD_URL}") -C ${OPENOCD_INSTALL_DIR} --strip-components=1 && \
     rm $(basename "${OPENOCD_URL}")
