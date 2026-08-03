@@ -25,7 +25,7 @@ RUN apt-get update && \
 WORKDIR /tmp
 
 #- CMake -----------------------------------------------------------------------
-ARG CMAKE_VERSION=4.2.3
+ARG CMAKE_VERSION=4.4.2
 ARG CMAKE_URL="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-linux-x86_64.tar.gz"
 ARG CMAKE_HASH="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-SHA-256.txt"
 
@@ -44,8 +44,8 @@ RUN ln -s ${DOTNET_INSTALL_DIR}/dotnet-info.sh ${DOTNET_INSTALL_DIR}/dotnet
 ENV PATH=$PATH:${DOTNET_INSTALL_DIR}
 
 #- Arm GNU Toolchain -----------------------------------------------------------
-ARG TOOLCHAIN_VERSION=15.2.rel1
-ARG TOOLCHAIN_URL="https://developer.arm.com/-/media/Files/downloads/gnu/$TOOLCHAIN_VERSION/binrel/arm-gnu-toolchain-$TOOLCHAIN_VERSION-x86_64-arm-none-eabi.tar.xz"
+ARG TOOLCHAIN_VERSION=15.3.rel1
+ARG TOOLCHAIN_URL="https://gitlab.arm.com/api/v4/projects/tooling%2Fgnu-toolchains-for-arm/packages/generic/gnu-toolchain/$TOOLCHAIN_VERSION/arm-gnu-toolchain-$TOOLCHAIN_VERSION-x86_64-arm-none-eabi.tar.xz"
 ARG TOOLCHAIN_INSTALL_DIR="/opt/gcc-arm-none-eabi"
 
 # Dependencies setup
@@ -66,9 +66,9 @@ COPY gcc-arm-none-eabi.cmake ${TOOLCHAIN_INSTALL_DIR}
 ENV PATH=$PATH:${TOOLCHAIN_INSTALL_DIR}/bin
 
 #- JLink Debugger --------------------------------------------------------------
-ARG JLINK_VERSION=916a
+ARG JLINK_VERSION=964
 ARG JLINK_URL="https://www.segger.com/downloads/jlink/JLink_Linux_V${JLINK_VERSION}_x86_64.tgz"
-ARG JLINK_MD5="cfdd13087a94615ab07c5245086fa260"
+ARG JLINK_MD5="e980f3ce4260763bc13ed695e28a88e3"
 ARG JLINK_POST="accept_license_agreement=accepted&submit=Download+software"
 ARG JLINK_INSTALL_DIR="/opt/SEGGER/JLink"
 

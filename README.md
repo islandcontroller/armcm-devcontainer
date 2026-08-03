@@ -6,10 +6,10 @@
 ![Screenshot](scr.PNG)
 
 ### Packages
-* [Arm GNU Toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads) Version 15.2rel1
-* [SEGGER J-Link Software](https://www.segger.com/downloads/jlink/) Version 9.16a
+* [Arm GNU Toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads) Version 15.3rel1
+* [SEGGER J-Link Software](https://www.segger.com/downloads/jlink/) Version 9.64
 * [xPack OpenOCD](https://github.com/xpack-dev-tools/openocd-xpack) Version 0.12.0-7
-* [CMake](https://cmake.org/download) Version 4.2.3
+* [CMake](https://cmake.org/download) Version 4.4.2
 
 ## System Requirements
 * VSCode [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension
