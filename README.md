@@ -48,15 +48,16 @@ e.g. "`cu -l /dev/ttyACM0 -s 115200`".
 
 To close the connection, press RETURN/ESC/Ctrl-C, type "`~.`" (tilde, dot) and wait for 3 seconds.
 
-### SEGGER Ozone
-Use the `setup-devcontainer` script to download and install [SEGGER Ozone](https://www.segger.com/products/development-tools/ozone-j-link-debugger/) and its dependencies:
+### Additional tooling
+Use the `setup-devcontainer` script to download and install additional tools, such as [SEGGER Ozone](https://www.segger.com/products/development-tools/ozone-j-link-debugger/), [SEGGER SystemView](https://www.segger.com/products/development-tools/systemview/) and their dependencies:
 
     setup-devcontainer --install-ozone
+    setup-devcontainer --install-systemview
 
-Launch it from a terminal tab using the `ozone` command.
+Launch it from a terminal tab using the `ozone` or `systemview` commands.
 
-### SEGGER J-Flash other GUI tools
-Use the following command to install the GUI dependencies:
+### GUI dependencies for SEGGER J-Flash
+Use the following command to install just the GUI dependencies needed for running J-Link/J-Flash tools in graphical mode:
 
     setup-devcontainer --install-gui
 
