@@ -25,9 +25,9 @@ RUN apt-get update && \
 WORKDIR /tmp
 
 #- CMake -----------------------------------------------------------------------
-ARG CMAKE_VERSION=4.4.2
+ARG CMAKE_VERSION=4.4.4
 ARG CMAKE_URL="https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-linux-x86_64.tar.gz"
-ARG CMAKE_HASH="3ada9a3f5d8a85413579bdd0ea6aa8e8da86efdd6d15c91a1afa517f2021956c"
+ARG CMAKE_HASH="e5bb807f7728cb60cd8b27ebc97a2edb469b68655f21e844a600c3575b76f5bb"
 
 # Download and install package
 RUN curl -sLO ${CMAKE_URL} && \
@@ -67,9 +67,9 @@ COPY gcc-arm-none-eabi.cmake ${TOOLCHAIN_INSTALL_DIR}
 ENV PATH=$PATH:${TOOLCHAIN_INSTALL_DIR}/bin
 
 #- JLink Debugger --------------------------------------------------------------
-ARG JLINK_VERSION=964
+ARG JLINK_VERSION=982
 ARG JLINK_URL="https://www.segger.com/downloads/jlink/JLink_Linux_V${JLINK_VERSION}_x86_64.tgz"
-ARG JLINK_MD5="e980f3ce4260763bc13ed695e28a88e3"
+ARG JLINK_MD5="49c763bc728d4dff58683247b72b1771"
 ARG JLINK_POST="accept_license_agreement=accepted&submit=Download+software"
 ARG JLINK_INSTALL_DIR="/opt/SEGGER/JLink"
 
