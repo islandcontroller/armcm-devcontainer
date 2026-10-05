@@ -14,6 +14,14 @@ case $1 in
         rm Ozone_Linux_x86_64.deb
         ;;
 
+    -S|--install-systemview)
+        SYSTEMVIEW_VERSION=V410b
+        curl -LO https://www.segger.com/downloads/systemview/SystemView_Linux_${SYSTEMVIEW_VERSION}_x86_64.deb
+        $0 --install-gui
+        sudo bash -c "DEBIAN_FRONTEND=noninteractive apt-get install -y ./SystemView_Linux_${SYSTEMVIEW_VERSION}_x86_64.deb"
+        rm SystemView_Linux_${SYSTEMVIEW_VERSION}_x86_64.deb
+        ;;
+
     -h|--help)
         echo "Usage: setup-devcontainer [OPTION]"
         echo "Copy UDev rules or install additional features"
